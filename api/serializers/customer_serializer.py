@@ -33,7 +33,6 @@ class RestrictedCustomerSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 class CustomerSerializer(serializers.HyperlinkedModelSerializer):
-    # products = serializers.HyperlinkedRelatedField(many=True, view_name='product-detail', read_only=True)
 
     class Meta:
         model = Customer
@@ -41,9 +40,6 @@ class CustomerSerializer(serializers.HyperlinkedModelSerializer):
           'id',
           'url',
           'user',
-          'created',
-          'first_name',
-          'last_name',
           'street_address',
           'city',
           'state',

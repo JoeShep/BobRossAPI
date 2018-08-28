@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.contrib.auth.models import User, Group
+from api.models import Customer
 from rest_framework.authtoken.models import Token
 from django.views.decorators.csrf import csrf_exempt
 import json
@@ -25,8 +26,13 @@ def register_user(request):
                     last_name=req_body['last_name'],
                     )
 
-    # Commit the user to the database by saving it
-    new_user.save()
+    new_customer = Customer.objects.create(
+                    user = new_user,
+                    street_address=req_body['street'],
+                    city=req_body['city'],
+                    state=req_body['state'],
+                    zipcode=req_body['zip'],
+                  )
 
     # Use the REST Framework's token generator on the new user account
     # This is the same as calling a method for loggin in a user after you create their account
