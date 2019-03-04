@@ -39,8 +39,5 @@ def register_user(request):
     token = Token.objects.create(user=new_user)
 
     # Return the token to the client
-    # This doesn't look like how the docs say you should do it.
-    # Authorization: Token 93138ba960dfb4ef2eef6b907718ae04400f606a
-    # Isn't this sending the data back in the body of the response instead of the header?
     data = json.dumps({"token":token.key})
     return HttpResponse(data, content_type='application/json')
